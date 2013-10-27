@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.*;
+import mpr.exs.Library;
 /*
  * Korzystając z mechanizmów kolekcji (w tym z odwzorowań/map) zmodyfikuj
  * poniższy kod tak, żeby na standardowym wyjściu produkować „indeks wystapień
@@ -28,30 +30,11 @@ import java.io.IOException;
 public class Ex03 {
 
 	public static void main(String[] args) {
-		String fname = "Machiavelli.txt";
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(fname));
-			String line = br.readLine();
-			while (line != null) {
-				// oczyszczamy tekst ze znaków interpunkcyjnych, liczb itp.
-				line = line.replaceAll("\\d+|[:,\\.\"\\?!;\\-/]|\\b[XIV]+\\b", " ");
-				// usuwamy ewentualne odstępy na początku i na końcu linii
-				line = line.replaceAll("^\\s+|\\s+$", "");
-				if (!line.matches("^\\s*$")) {
-					String[] words = line.split("\\s+");
-					for (String w : words) {
-						System.out.print(w.toLowerCase() + " –– ");
-					}
-					System.out.println();
-				}
-				line = br.readLine();
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Nie mogę otworzyć pliku " + fname);
-		} catch (IOException e) {
-			System.out.println("Błąd podczas czytania z pliku" + fname);
-		}
+		Library slowaWPliku = new Library("Machiavelli.txt");
+		slowaWPliku.WypiszSlowa();
+		slowaWPliku.znajdzSlowaWLinii(4);
+		slowaWPliku.znajdzSlowaWLinii(118);
+		slowaWPliku.znajdzSlowaWLinii(224);
 	}
 
 }
