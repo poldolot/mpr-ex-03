@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.Collator;
 import java.util.*;
 
 public class Library {
-	private Map<String, Set<Integer>> map = new TreeMap<String, Set<Integer>>();
+	private Map<String, Set<Integer>> map = new TreeMap<String, Set<Integer>>(Collator.getInstance(Locale.getDefault()));
 	public String fname;
 
 	public Library(String fileName) {
@@ -57,7 +58,7 @@ public class Library {
 	}
 	
 	public void znajdzSlowaWLinii(Integer linia) {
-		Set<String> set = new TreeSet<String>();
+		Set<String> set = new TreeSet<String>(Collator.getInstance(Locale.getDefault()));
 		String slowa = new String();
 		for (Map.Entry<String, Set<Integer>> wpis : map.entrySet()) {
 			if (wpis.getValue().contains(linia)) {
